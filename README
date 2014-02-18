@@ -1,21 +1,10 @@
 PyRPM
 =====
 
-Authors:
---------
-
-link:mailto:laroche@redhat.com[Florian La Roche]
-
-link:mailto:pknirsch@redhat.com[Phil Knirsch]
-
-link:mailto:twoerner@redhat.com[Thomas Woerner]
-
-link:mailto:ffesti@redhat.com[Florian Festi]
-
-PyRPM is an experimental project to look at rpm package management. It is 
+PyRPM is an experimental project to look at rpm package management. It is
 a python module and a collection of scripts that provide similar functionality
 as rpm, yum and co. It is written from ground up and is implemented only in
-python. It mainly deals with rpm packages, the rpm database `rpmdb` in 
+python. It mainly deals with rpm packages, the rpm database `rpmdb` in
 `/var/lib/rpm`, comps.xml files and yum repositories (called repo data).
 
 In the doc/ directory you can get a short description and overview of the
@@ -23,3 +12,8 @@ project link:doc/pyrpm.html[], find more information about the various tool
 link:doc/pyrpm-tools.html[], some more background information on how rpm works
 link:doc/pyrpm-devel.html[] or references to other projects
 link:doc/pyrpm-links.html[].
+
+Authors:
+--------
+
+See AUTHORS file.

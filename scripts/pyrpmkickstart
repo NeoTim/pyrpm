@@ -387,7 +387,7 @@ def main():
 #        if not (ks.has_key("install") and ks.has_key("selinux") and \
 #                not ks["selinux"].has_key("disabled")):
 #            pyrpm.rpmconfig.selinux_enabled = False
-        
+
         # setup selinux to use stage2 contexts
         if pyrpm.rpmconfig.selinux_enabled:
             pyrpm.se_linux.matchpathcon_fini()
@@ -2494,7 +2494,7 @@ def main():
 
         try:
             yum = pyrpm.yum.RpmYum(config)
-            
+
             if not yum.lock():
                 log.error("couldn't lock pyrpmyum")
                 return 0
@@ -2661,7 +2661,7 @@ def main():
             md5pw = ks["authconfig"].has_key("enablemd5")
             for user in ks["user"]:
                 log.info1("Creating user '%s'", user["name"])
-                
+
                 useradd = "/usr/sbin/useradd -m '%s' " % user["name"]
                 if user.has_key("homedir"):
                     useradd += " -d '%s'" % user["homedir"]
@@ -3089,9 +3089,9 @@ def main():
 
         if not pyrpm.rpmconfig.selinux_enabled or \
                not pyrpm.se_linux.is_selinux_enabled() > 0:
-        
+
             log.info1("Enabled SELinux file contexts relabling at first boot.")
-            
+
             # selinux not enforcing and not permissive in host system
             # touch .autorelabel in target chroot
             if not create_file(target_chroot, "/.autorelabel"):

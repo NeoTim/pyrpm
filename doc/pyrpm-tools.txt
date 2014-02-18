@@ -305,7 +305,7 @@ to install onto the second IDE disk with:
 pyrpmkickstart first downloads all rpm packages before the installation
 begins. This can be changed with the option "--no-cache".
 
-pyrpmkickstart now has SELinux support. You can install a SELinux guest even if 
+pyrpmkickstart now has SELinux support. You can install a SELinux guest even if
 your host system has no SELinux support. This is done via a autrelabeling on
 first boot of the guest.
 

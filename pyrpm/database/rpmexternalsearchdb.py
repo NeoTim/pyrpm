@@ -52,7 +52,7 @@ class RpmExternalSearchDB(RpmMemoryDB):
                     for filename in filenames:
                         result.add(filename)
             return list(result)
-        
+
         def searchRequires(self, name, flag, version):
             result = self.externaldb.searchRequires(
                 name, flag, version)

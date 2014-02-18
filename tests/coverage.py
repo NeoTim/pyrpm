@@ -80,16 +80,16 @@ c = {}
 # objects.
 
 import os.path
-    
+
 def do_realpath(path):
     if os.path.islink(path):
         path = os.readlink(path)
-        
+
     head, tail = os.path.split(path)
 
     if not tail:
         return path
-    
+
     head = do_realpath(head)
 
     return os.path.join(head, tail)

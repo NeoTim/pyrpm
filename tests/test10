@@ -287,7 +287,7 @@ function rhel4tou1pyrpmyum() {
     run "$PYRPMYUM -r $IN -c $IN/etc/nosuchfile.conf update $RELEASED/RHEL-4/U1/AS/$ARCH/tree/RedHat/RPMS" "$IN.LOG.1"
     cleanchroot $IN
 }
- 
+
 function fc3extraspyrpmyum() {
     # Fedora Core 3 with extras
     PYRPMYUM="./pyrpmyum -y --servicehack --quiet"
@@ -329,7 +329,7 @@ function rhfileconflicts() {
             echo "using $RELEASED/RHEL-$i/GOLD/AS/${ARCH/686/386}/tree/RedHat/RPMS"
         else
             echo "No $DIR/RHEL-$i/GOLD/AS/${ARCH/686/386}/tree/RedHat/RPMS or $DIR/$i/${ARCH/686/386}/RedHat/RPMS directories found"
-            continue 
+            continue
         fi
         IN=$DATA/RHEL-${i}-fileconflicts-$ARCH
         run "$PYRPMYUM --test --arch $ARCH --fileconflicts --ignoresize -r $IN -c $IN/etc/nosuchfile.conf install $RPMDIR" "$IN.LOG"
@@ -351,7 +351,7 @@ function fcfileconflicts() {
             RPMDIR="$DIR/$i/${ARCH/686/386}/Fedora/RPMS"
         else
             echo "No $DIR/$i/${ARCH/686/386}/os/Fedora/RPMS or $DIR/$i/${ARCH/686/386}/Fedora/RPMS directories found"
-            continue 
+            continue
         fi
         IN=$DATA/FC${i}-fileconflicts-$ARCH
         run "$PYRPMYUM --test --arch $ARCH --fileconflicts --ignoresize -r $IN -c $IN/etc/nosuchfile.conf install $RPMDIR" "$IN.LOG"
@@ -374,7 +374,7 @@ function sanitychecks() {
     echo "Running $FUNCNAME check on $ARCH"
     IN=$DATA/
     for i in 1 2 3 4 5 development; do
-        for dist in "RHEL" "FC"; do 
+        for dist in "RHEL" "FC"; do
             for dir in \
                 "$dist-$i/$ARCH/RedHat/RPMS" \
                 "$dist-$i/$ARCH/Fedora/RPMS" \
@@ -610,7 +610,7 @@ if test x$1 = x--help ; then
     echo "[--checkrhel]            - runs dependency, fcfileconflicts, symlink and install tests"
     echo "                           on RHEL, RHEL+updates"
 
-    for i in `seq 0 $numtests`; do 
+    for i in `seq 0 $numtests`; do
         echo "[--${TESTFUNCTIONS[$i]}]   (${TESTS[$i]})"
     done
     exit
@@ -655,7 +655,7 @@ if [ "$teststorun" = " runalltests" ]; then
         "${TESTFUNCTIONS[$run]}"
     done
 else
-    for i in $teststorun; do 
+    for i in $teststorun; do
         $i
     done
 fi

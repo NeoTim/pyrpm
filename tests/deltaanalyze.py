@@ -65,7 +65,7 @@ while i < len(sys.argv):
 
 if not input:
     usage()
-    sys.exit(0)        
+    sys.exit(0)
 
 
 source = None

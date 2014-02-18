@@ -714,7 +714,7 @@ class RpmRepoDB(memorydb.RpmMemoryDB):
             tag = elem.tag
             isend = (event == "end")
             if not isend:
-                continue 
+                continue
             if tag.endswith("}%ss" % ename):
                 break
             props = elem.attrib

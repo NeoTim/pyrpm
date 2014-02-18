@@ -72,7 +72,7 @@ class PaddedFile:
         if self._read is None:
             return ''
         return self._string[self._read:]
-        
+
 class PyGZIP:
     """The GzipFile class simulates most of the methods of a file object with
     the exception of the readinto() and truncate() methods.
@@ -137,7 +137,7 @@ class PyGZIP:
             self.buffer = []   # List of data blocks
             self.bufferlen = 0
             self.pos = 0       # Offset of next data to read from buffer[0]
-            
+
             self.name = filename
 
         elif mode[0:1] == 'w' or mode[0:1] == 'a':
@@ -270,7 +270,7 @@ class PyGZIP:
             return f.unused()
         else:
             return ''
-        
+
 
     def _read(self, readsize):
         data = self.fileobj.read(readsize)
@@ -313,7 +313,7 @@ class PyGZIP:
                 readsize = 65536 - self.bufferlen
             else:
                 readsize = size - self.bufferlen
-                
+
             if readsize > 65536:
                 readsize = 32768
             elif readsize > 32768:
@@ -452,7 +452,7 @@ class PyGZIP:
                     scansize -= self.pos
                     pos = self.buffer[idx].find('\n', self.pos)
                 else:
-                    pos = self.buffer[idx].find('\n')                    
+                    pos = self.buffer[idx].find('\n')
                 if pos != -1:
                     if size>=0 and scansize+pos+1>size:
                         return self.read(size)

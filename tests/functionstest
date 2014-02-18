@@ -10,7 +10,7 @@ class TestFunctions(unittest.TestCase):
 
     def tearDown(self):
         pass
-        
+
     def testNormalizeList(self):
         """Testing functions.normalizeList()
         """
@@ -63,17 +63,17 @@ if __name__ == "__main__":
         import coverage
         coverage.erase()
         coverage.start()
-        
+
     testRunner = unittest.TextTestRunner(verbosity=2)
     result = testRunner.run(suite())
-    
+
     if do_coverage:
-        coverage.stop()    
+        coverage.stop()
         m = sys.modules.values()
         coverage.the_coverage.report(functions, show_missing=1 )
-        
+
     sys.exit(not result.wasSuccessful())
-    
+
 __author__ = "Harald Hoyer <harald@redhat.com>"
 __date__ = "$Date$"
 __version__ = "$Revision$"

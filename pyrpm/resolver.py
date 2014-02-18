@@ -739,7 +739,7 @@ class RpmResolver:
     def getObsoleteConflicts(self):
         """Check for conflicts from obsoletes of installed packages
         against newly installed packages.
-        
+
         Return a HashList: RpmPackage =>
         [((name, RPMSENSE_* flags, EVR string), conflicting RpmPackage)]."""
         conflicts = HashList()
@@ -754,7 +754,7 @@ class RpmResolver:
                 if not p in self.installs:
                     continue
                 # if p in self.updates:
-                # XXX check old pkg has already same conflict 
+                # XXX check old pkg has already same conflict
                 conflicts.setdefault(pkg, []).append(((n, f, v), p))
         return conflicts
 

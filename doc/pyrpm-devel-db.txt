@@ -1,14 +1,14 @@
 Database Interface
 ------------------
 
-A database within pyrpm is a set of rpms. Basic operations supported 
+A database within pyrpm is a set of rpms. Basic operations supported
 by databases are:
 
  * open, close, read, clear - NOPs for some classes
  * clearPkgs - remove tags from rpms to reduce memory usage
  * isFilelistImported, importFilelist - NOPs for non repo dbs
  * reloadDependencies - needed after loading filelist
- * adding and removing rpms - some do that in memory others directly 
+ * adding and removing rpms - some do that in memory others directly
                               write to disk
  * in operator
  * getMemoryCopy - a copy of the database that can be modified in memory
@@ -25,20 +25,20 @@ together either by inheritance or by using instances of other classes.
 
  RpmDatabase - abstract super class
    RpmDB - The on disk rpm db(4)
-     RpmDiskShadowDB - allow virtually removes from db that are not written 
+     RpmDiskShadowDB - allow virtually removes from db that are not written
                        to disk but insted are just filtered from all results
-   RpmMemoryDB - in memory db that builds hashes for searching, work with all 
+   RpmMemoryDB - in memory db that builds hashes for searching, work with all
                  kind of rpms
      RpmRepoDB - Yum repository, reads data into memory
        SqliteRepoDB - uses the yum sqlite db
-         RhnChannelRepoDB - deals with RHN channels which are very similar 
+         RhnChannelRepoDB - deals with RHN channels which are very similar
                             to Yum repositories
-     RpmExternalSearchDB - use another db (sqlite) for searching while 
-                           maintaining an own list of rpms. All rpms must be 
-                           contained in the external db! 
+     RpmExternalSearchDB - use another db (sqlite) for searching while
+                           maintaining an own list of rpms. All rpms must be
+                           contained in the external db!
    JointDB - treat several dbs as one
      RhnRepoDB - RHN Repository. Work is done by RhnChannelRepoDB instances
-     RpmShadowDB - current state during resolving - see RpmYum.pydb 
+     RpmShadowDB - current state during resolving - see RpmYum.pydb
                    use case below
 
 Use Cases
@@ -47,18 +47,18 @@ Use Cases
 Although databases are used in more or less every script. There are two
 use cases within pyrpmyum that cover all database classes.
 
-"->" means holding a pointer to an/several instance(s) of another class 
+"->" means holding a pointer to an/several instance(s) of another class
 
-RpmYum.repos 
+RpmYum.repos
 ~~~~~~~~~~~~
 
 Database containing all rpms that are used to resolve
 dependencies. After creation this database is read only.
 
  JointDB
-  -> SqliteRepoDB - on per repository 
+  -> SqliteRepoDB - on per repository
   -> RhnRepoDB - optional
-   -> RhnChannelRepoDB - one per channel 
+   -> RhnChannelRepoDB - one per channel
   -> RpmMemoryDB - containing rpms given at the command line (optional)
 
 RpmYum.pydb
@@ -70,7 +70,7 @@ it. All modifications are kept in memory. It uses the RpmYum.repos and
 the RpmDB for searching and filters the results to the rpms that have
 not yet removed or have been added. That way neither linear search nor
 building additional hashes is needed.
- 
+
  RpmShadowDB
   -> RpmExternalSearchDB - keeps track of rpms installed from the repos
    -> RpmYum.repos - used for searches. See above for details

@@ -35,7 +35,7 @@ def usage():
 
 options:
     [-?, --help] [--version]
-    [--quiet] [-v, --verbose] [-q] [-y] 
+    [--quiet] [-v, --verbose] [-q] [-y]
     [-c CONFIGFILE] [--dbpath DIRECTORY]
     [-r, --root DIRECTORY, --installroot DIRECTORY]
     [-h, --hash] [--force] [--oldpackage] [--justdb] [--test]

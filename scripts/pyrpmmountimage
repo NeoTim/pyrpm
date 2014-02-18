@@ -18,7 +18,7 @@ def recursive_mount(mountpoint, image):
     fstab = functions.load_fstab(mountpoint)
     got_labels = False
     for spec, file, vfstype, mntops, freq, passn in fstab:
-        
+
         file = os.path.join(mountpoint, file[1:])
         if not os.path.isdir(file):
             continue
@@ -49,14 +49,14 @@ def main():
     #log.setDebugLogLevel(log.NO_DEBUG)
     #log.setFormat("%(label)s%(message)s")
     #log.setDateFormat("%Y-%m-%d %H:%M:%S")
-    
+
     (opts_list, args) = getopt.getopt(sys.argv[1:], "hr",
                                  [ "help", ])
 
     opts = {}
     for opt, value in opts_list:
         opts[opt] = value
-            
+
     n_args = len(args)
     if n_args<1 or '-h' in opts or '--help' in opts:
         print "pyrpmmountimage [-r] IMAGE [PARTITIONNR MOUNTPOINT]"
@@ -70,7 +70,7 @@ def main():
     try:
         image = disk.Disk(filename, alloc_loop=1, as_image=1)
 
-        if n_args == 1:            
+        if n_args == 1:
             image.print_partitions()
         elif n_args == 3:
             mountpoint = args[2]
@@ -92,7 +92,7 @@ def main():
                     recursive_mount(mountpoint, image)
             else:
                 print "Unknown partition number"
-            
+
 
     finally:
         image.close()

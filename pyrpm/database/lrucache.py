@@ -540,7 +540,7 @@ class SmallLRUCache(dict):
             self._lru = dict.keys(self)
             #assert self._assert_invariants()
             return self
-      
+
         for k in otherdict.iterkeys():
             if dict.has_key(self, k):
                 self._lru.remove(k)

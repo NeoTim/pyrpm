@@ -601,7 +601,7 @@ class SqliteRepoDB(repodb.RpmRepoDB):
                 self._pkgs[pkgKey] = pkg
                 if self._isExcluded(pkg):
                     self._pkgs[pkgKey] = None
-                                                
+
 
     def _buildRpm(self, data):
         pkg = SqliteRpmPackage(self.config, source='', db=self)

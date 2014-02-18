@@ -40,7 +40,7 @@ class CPIO:
     def readHeader(self):
         if self.EOF:
             return None
-        
+
         hdr_data = self.fd.read(110)
         if len(hdr_data) != 110:
             raise IOError, "Short read"
@@ -67,7 +67,7 @@ class CPIO:
 
         filename = self.fd.read(filenamesize-1)
         if len(filename) != filenamesize-1:
-            raise IOError, "Short read"        
+            raise IOError, "Short read"
 
         # filename padding
         self._readPadding(110 + filenamesize)
@@ -77,11 +77,11 @@ class CPIO:
 
         return (magic, inode, mode, uid, gid, nlink, mtime, filesize,
                 dev_major, dev_minor, rdev_major, rdev_minor, filename)
-        
+
     def readData(self, target_fd, filesize):
         if self.EOF:
             return None
-        
+
         # write data
         while i < filesize:
             _data = fd.read(65536)
@@ -98,7 +98,7 @@ class CPIO:
     def read(self, target_fd):
         if self.EOF:
             return None
-        
+
         (magic, inode, mode, uid, gid, nlink, mtime, filesize, dev_major,
          dev_minor, rdev_major, rdev_minor, filename) = self.readHeader(fd)
 
@@ -196,7 +196,7 @@ class RpmPackage(dict):
 
     def load(self):
         pass
-    
+
     def save(self):
         name = "%s/%s" % (os.getcwd(), self["filename"])
         pkg = pyrpm.RpmPackage(self.config, "file://%s" % self["hdr"])
@@ -243,19 +243,19 @@ class RpmDeltaPackage(dict):
     -----------
 
     +-------+---------+---------+-------------+-
-    | magic | version | release | compression | 
-    |       |         |         |             | 
+    | magic | version | release | compression |
+    |       |         |         |             |
     +-------+---------+---------+-------------+-
-    | 4B    | 4B      | 4B      | 2B          | 
+    | 4B    | 4B      | 4B      | 2B          |
     +-------+---------+---------+-------------+-
 
     -+------+--------+----+------+--------+----+------+--------+----+-
-     | size : source : pa | size : source : pa | size : target : pa | 
-     |      : NEVRA  : dd |      : sha1   : dd |      : NEVRA  : dd | 
+     | size : source : pa | size : source : pa | size : target : pa |
+     |      : NEVRA  : dd |      : sha1   : dd |      : NEVRA  : dd |
     -+------+        : in +------+        : in +------+        : in +-
-     | 4B   :        : g  | 4B   :        : g  | 4B   :        : g  | 
+     | 4B   :        : g  | 4B   :        : g  | 4B   :        : g  |
     -+------+--------+----+------+--------+----+------+--------+----+-
-    
+
     -+-------+---------------+--------------+----+--------------+
      | delta | target header | cpio delta   : pa | target pkg   |
      | size  | size          | (compressed) : dd | header       |
@@ -293,7 +293,7 @@ class RpmDeltaPackage(dict):
         self["release"] = 0
         self["compression"] = 0x0401
         self["filename"] = filename
-        
+
     def load(self):
         self.fd = open(self["filename"], "r")
 
@@ -315,7 +315,7 @@ class RpmDeltaPackage(dict):
             raise ValueError, "unsupported diff utility"
         self["compression"] = compression
 
-        
+
         data = pyrpm.readExact(self.fd, 4)
         size = struct.unpack("!I", data)[0]
         self["source_nevra"] = pyrpm.readExact(self.fd, size-1)
@@ -340,7 +340,7 @@ class RpmDeltaPackage(dict):
         data = pyrpm.readExact(self.fd, 8)
         self["delta_size"] = struct.unpack("!Q", data)[0]
 #        print self["delta_size"]
-        
+
         data = pyrpm.readExact(self.fd, 8)
         self["target_header_size"] = struct.unpack("!Q", data)[0]
 #        print self["target_header_size"]
@@ -371,7 +371,7 @@ class RpmDeltaPackage(dict):
         target_fd.close()
 
         self._readPadding(self.fd.tell() - tell)
-        
+
         # read target_hdr
         name = "%s/hdr_%s" % (self.config.tempdir, self["target_nevra"])
         self["target_hdr"] = name
@@ -403,7 +403,7 @@ class RpmDeltaPackage(dict):
 
         self.fd = open(self["filename"], "w")
 #        print "writing %s" % self["filename"]
-        
+
         self.fd.write(self.MAGIC)
         self.fd.write(struct.pack("!II", self["version"], self["release"]))
         self.fd.write(struct.pack("!H", self["compression"]))
@@ -448,7 +448,7 @@ class RpmDeltaPackage(dict):
             size += len(data)
         fd.close()
         self._writePadding(gz_delta_size)
-        
+
         fd = open(gz_hdr, "r")
         size = 0
         while size < gz_hdr_size:
@@ -461,7 +461,7 @@ class RpmDeltaPackage(dict):
         fd.close()
 
         self.fd.close()
-        
+
     def _readPadding(self, size):
         # skip padding
         for i in xrange((4 - (size % 4)) % 4):
@@ -482,7 +482,7 @@ class RpmDelta:
         if compression:
             self.compression = compression
         self.verify = verify
-        
+
     def apply(self, source_pkg, delta_pkg):
         # target_pkg = RpmPackage()
         # return target_pkg
@@ -512,7 +512,7 @@ class RpmDelta:
         pkg["hdr"] = delta_pkg["target_hdr"]
         pkg["cpio"] = target_cpio
 
-        return pkg    
+        return pkg
 
     def create(self, source_pkg, target_pkg):
         if source_pkg["name"] != target_pkg["name"]:
@@ -520,7 +520,7 @@ class RpmDelta:
                   "Source name '%s' does not match target name '%s'" % \
                   (source_pkg["name"],target_pkg["name"])
 
-#        if source_pkg["installtid"] or 
+#        if source_pkg["installtid"] or
         if target_pkg["installtid"]:
             raise ValueError, "Unable to create delta from installed packages"
 
@@ -533,7 +533,7 @@ class RpmDelta:
         if target_cpio == None:
             print "Failed to get CPIO from target package."
             return None
-        
+
         delta = self.createDelta(source_cpio.filename, target_cpio.filename)
         if delta == None:
             print "Failed to generate delta."
@@ -579,7 +579,7 @@ class RpmDelta:
                 (fname, cpio_fd, fsize) = pkg.io.read()
                 cpio_hash[".%s" % fname] = _cpio.fd.tell()
                 if self.config.verbose > 0:
-                    print " %s\t%s\t offset:%d" % (fsize, fname, 
+                    print " %s\t%s\t offset:%d" % (fsize, fname,
                                                    cpio_hash[".%s" % fname])
                 _cpio.write("070701", 0, 0, 0, 0, 0, 0, fsize, 0, 0, 0, 0,
                            ".%s" % fname, cpio_fd)
@@ -763,7 +763,7 @@ class RpmDelta:
             apkg.close()
         except IOError:
             return None
-        
+
         return hdr_name
 
     def createDelta(self, source_cpio, target_cpio):
@@ -822,7 +822,7 @@ def EXT_gzipFile(file):
     os.system("gzip --best -nc '%s' > '%s'" % (file, target_name))
 #    os.system("minigzip '%s'" % (file))
 #    os.system("gzip -dc '%s' > '%s'" % (target_name, file))
-    
+
     return target_name
 
 def gzipFile(file):
@@ -1024,7 +1024,7 @@ if operation == "create":
     if not target_pkg:
         sys.exit(-1)
 
-    
+
     delta_pkg = rpmdelta.create(source_pkg, target_pkg)
 
     if delta_pkg:
@@ -1042,7 +1042,7 @@ elif operation == "apply":
     delta_pkg = openDelta(delta_name)
     if not delta_pkg:
         sys.exit(-1)
-    
+
     target_pkg = rpmdelta.apply(source_pkg, delta_pkg)
 
     if target_pkg:
@@ -1058,7 +1058,7 @@ elif operation == "info":
         compression = "bzip2"
     else:
         compression = "- unknown -"
-    
+
     if delta_pkg["compression"] & 0x0100:
         diff_utility = "edelta"
     elif delta_pkg["compression"] & 0x0200:
@@ -1092,7 +1092,7 @@ if operation == "create":
         print "%d\t%s" % (delta_size, delta_name)
         print "%d\t%s" % (target_size, target_name)
     if not quiet:
-        print "%s:  %.02fs  %.02f%%" % (delta_name, time2, 
+        print "%s:  %.02fs  %.02f%%" % (delta_name, time2,
                                         100.0 * delta_size / target_size)
 elif operation == "apply":
     if not quiet:

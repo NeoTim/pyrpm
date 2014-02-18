@@ -638,7 +638,7 @@ PYRPMYUM="./pyrpmyum --nosignature --ignoresize -y --autoerase --servicehack $QU
 CHECKUPDATE="./pyrpmcheckrepo --ignoresize --nosignature --test $QUIET"
 RANDOMIZER="./pyrpmrandomizer --ignoresize --nosignature -y --justdb $QUIET"
 
-# Daily checks, but where should rawhideextrasdepencycheck run ? 
+# Daily checks, but where should rawhideextrasdepencycheck run ?
 # There's no FE mirror in RDU and no nightly mirror in STR:
 if [ "$DAILY" == "y" ]; then
     if [ "$RUNFEDORA" == "y" ]; then

@@ -107,7 +107,7 @@
 # - "rhnplatform" could go away if it is not required.
 #
 
-__version__ = "0.70"
+__version__ = "0.90"
 __doc__ = """Manage everything around Linux RPM packages."""
 
 
@@ -3123,7 +3123,7 @@ def TreeDiff(dir1, dir2):
         # Is there a new rpm?
         if not glob.glob("%s/%s*" % (dir2, rpm["name"])):
             removed.append("Removed package %s\n" % rpm["name"])
-    
+
     if not changed:
         changed = ["(none)",]
     return  "".join(("\n".join(new), "\n\n", "\n".join(removed),

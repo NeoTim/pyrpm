@@ -286,7 +286,7 @@ def brRealPath(prefix, filename):
         if __symlinkhash__[p] != False:
             return brRealPath(prefix, __symlinkhash__[p] +"/"+ "/".join(dirs[i+1:]))
     return prefix + filename
-            
+
 def installFile(rfi, infd, size, useAttrs=True, pathPrefix=None,
                 useSEcontext=True):
     """Install a file described by RpmFileInfo rfi, with input of given size
@@ -1169,7 +1169,7 @@ def rangeCompare(flag1, evr1, flag2, evr2):
 
 def doesObsolete(pkg1, pkg2):
     """Checks whether pk1 obsoletes pkg2. Return 1 if it does, 0 otherwise."""
-    
+
     for obs in pkg1["obsoletes"]:
         for pro in pkg2["provides"]:
             if obs[0] != pro[0]:

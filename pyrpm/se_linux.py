@@ -95,7 +95,7 @@ def lsetfilecon(filename, context):
     if not context:
         return 0
     return selinux.lsetfilecon(filename, context)
-    
+
 def lgetfilecon(filename):
     if __enabled < 0:
         return

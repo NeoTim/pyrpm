@@ -35,7 +35,7 @@ try:
     from up2date_client import up2dateErrors
     use_rhn = True
 except:
-    log.warning("Couldn't import up2date_client modules. Disabling RHN support.")
+    # log.warning("Couldn't import up2date_client modules. Disabling RHN support.")
     use_rhn = False
 
 
@@ -57,7 +57,7 @@ class RhnRepoDB(JointDB):
         except up2dateErrors.NoChannelsError:
             raise IOError, "Failed to get channels from RHN Server."
         sslcacert = up2date_cfg['sslCACert']
-        for channel in svrChannels: 
+        for channel in svrChannels:
             rcdb = RhnChannelRepoDB(config, (channel['url']+'/GET-REQ/'+channel['label'], ), buildroot, channel['label'], nc)
             self.addDB(rcdb)
 

@@ -63,7 +63,7 @@ def main():
     resolve = 1
     output_op = 1
     requires = 0
-    
+
 #    if len(sys.argv) == 1:
 #        usage()
 #        sys.exit(0)
@@ -152,12 +152,12 @@ def main():
 
         if verbose > 0 and len(list) > 0:
             print
-            del list    
+            del list
 
     if len(ops) == 0 and len(installed) == 0 and \
            pyrpm.rpmconfig.checkinstalled == 0:
         usage()
-        sys.exit(0)        
+        sys.exit(0)
 
     if len(ops) > 0:
         print "==============================================================="
@@ -323,7 +323,7 @@ def main():
     cl = time.time()
     operations = orderer.order()
     print "orderer.order(): time=%f" % (time.time() - cl)
-    
+
     del orderer
 
     if operations == None:

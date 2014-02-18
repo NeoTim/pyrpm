@@ -107,7 +107,7 @@ if __name__ == '__main__':
 
     if len(pargs) == 0:
         usage()
-        sys.exit(0)        
+        sys.exit(0)
 
     # -- load packages
 
@@ -128,7 +128,7 @@ if __name__ == '__main__':
         print
 
     del pargs
-    
+
     # -----------------------------------------------------------------------
 
     def printRelations(relations, output):
@@ -270,7 +270,7 @@ if __name__ == '__main__':
                       (x1, y1, x2, y2, x2, y2, x2, y2,
                        (x1 + x2) / 2, (y1 + y2) / 2)
                 s += '"node%08d" -> "node%08d" [%s, %s];\n' % \
-                     (self.nodes[node].index, self.nodes[next].index, 
+                     (self.nodes[node].index, self.nodes[next].index,
                       style, pos)
             return s
 
@@ -306,7 +306,7 @@ if __name__ == '__main__':
             loop.x = x
             loop.y = y
             if line_width < loop.width:
-                line_width = loop.width            
+                line_width = loop.width
             y += loop.height
             if y_max < y:
                 y_max = y
@@ -356,7 +356,7 @@ if __name__ == '__main__':
         fp.write('	headclip=true\n');
         fp.write('	arrowsize=1.0\n');
         fp.write('];\n')
-        
+
         for loop in loop_list:
             fp.write(str(loop))
 
@@ -400,7 +400,7 @@ if __name__ == '__main__':
                 if orderer.breakupLoops(relations, loops) != 1:
                     log.errorLn("Unable to breakup loop.")
                     return None
-        
+
         if pyrpm.rpmconfig.debug > 1:
             for r in last:
                 log.debug2("%d: %s", idx, r.getNEVRA())
@@ -434,7 +434,7 @@ if __name__ == '__main__':
         sys.exit(-1)
 
     # -----------------------------------------------------------------------
-        
+
     orderer = pyrpm.RpmOrderer(pyrpm.rpmconfig,
                                resolver.installs, resolver.updates,
                                resolver.obsoletes, resolver.erases)

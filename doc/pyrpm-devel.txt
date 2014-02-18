@@ -258,7 +258,7 @@ using R.
 An important fact is that dependencies are "arch-less", meaning if you have a
 requirement on multilib systems this can lead to 64bit packages being pulled
 it from 32bit packages and vice versa. For libraries this can and usally will
-automatically be prevented as 64bit libraries on 64bit systems have a (64bit) 
+automatically be prevented as 64bit libraries on 64bit systems have a (64bit)
 at the end of their provides, so they specifically and correcltly will be
 required by binaries linked against them.
 

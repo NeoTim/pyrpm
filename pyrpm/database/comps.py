@@ -218,7 +218,7 @@ class RpmCompsXML:
             isend = (event == "end")
             if   not isend and tag == "packagelist":
                 group["packagelist"] = self.__parsePackageList(ip)
-            elif not isend and tag == "grouplist": 
+            elif not isend and tag == "grouplist":
                 group["grouplist"] = self.__parseGroupList(ip)
             if not isend:
                 continue

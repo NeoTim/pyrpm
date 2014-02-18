@@ -27,7 +27,7 @@ def usage():
 
 This program prints a treee for package dependencies.
 The asterisc in the listing is shown after dependencies, which are resolved in
-a tree before. 
+a tree before.
 
 """ % sys.argv[0]
 
@@ -108,7 +108,7 @@ if __name__ == '__main__':
 
     if len(pargs) == 0:
         usage()
-        sys.exit(0)        
+        sys.exit(0)
 
     # -- load installed
 
@@ -128,7 +128,7 @@ if __name__ == '__main__':
             installed.append(r)
         if verbose > 0 and len(list) > 0:
             print
-            del list    
+            del list
 
     # -- load install/update/erase
 
@@ -148,7 +148,7 @@ if __name__ == '__main__':
         print
 
     del pargs
-    
+
     # -----------------------------------------------------------------------
 
     if install_flag == 1:
@@ -162,7 +162,7 @@ if __name__ == '__main__':
 
     for r in rpms:
         ret = instlist.append(r)
-            
+
         if ret == pyrpm.RpmResolver.ALREADY_INSTALLED:
             log.error("Package %s is already installed", r.getNEVRA())
             sys.exit(ret)

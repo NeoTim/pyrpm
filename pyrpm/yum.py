@@ -1535,7 +1535,7 @@ class RpmYum:
             resolvers = [(rpkg.getNA(), rpkg.getVR(), rpkg.db.reponame)
                          for rpkg in resolvers]
             resolvers.sort()
-            
+
             if self.command == 'resolvedep' and resolvers:
                 # XXX prefere installed?
                 log.info1('%s %s %s', *resolvers[-1])
@@ -1619,7 +1619,7 @@ class RpmYum:
         log.info1("")
         if msg:
             log.info1(msg)
-        
+
         pkgs = [(p.getNA(), p.getVR(), p.db.reponame, p)
                 for p in pkgs]
         pkgs.sort()

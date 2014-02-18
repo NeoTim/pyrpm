@@ -73,7 +73,7 @@ while i < len(sys.argv):
 
 if not dir1 or not dir2:
     usage()
-    sys.exit(0)        
+    sys.exit(0)
 
 
 packages = pyrpm.HashList()
